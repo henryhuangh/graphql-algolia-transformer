@@ -73,11 +73,9 @@ def get_table_name_from_arn(arn):
 # Configure Index Settings
 # https://www.algolia.com/doc/api-reference/settings-api-parameters/
 def set_index_settings(index_name, opts):
-    if not opts:
+    if 'settings' not in opts:
         return
     logger.debug('Configuring Index: %s', opts)
-    if 'settings' not in opts:
-        raise ValueError('You need to provide settings.settings object if specifying settings.')
     settings = opts['settings']
     opts.pop('settings')
     index = client.init_index(index_name)
